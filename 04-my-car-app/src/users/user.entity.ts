@@ -1,13 +1,14 @@
-import { Report } from '../reports/report.entity';
 import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
   AfterInsert,
   AfterRemove,
   AfterUpdate,
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
   OneToMany,
 } from 'typeorm';
+import { Report } from '../reports/report.entity';
+
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -19,21 +20,24 @@ export class User {
   @Column()
   password: string;
 
-  @AfterInsert()
-  logInsert() {
-    console.log('Inserted user with id', this.id);
-  }
+  @Column({ default: true })
+  admin: boolean;
 
   @OneToMany(() => Report, (report) => report.user)
   reports: Report[];
 
+  @AfterInsert()
+  logInsert() {
+    console.log('Inserted User with id', this.id);
+  }
+
   @AfterUpdate()
   logUpdate() {
-    console.log('Updated user with id', this.id);
+    console.log('Updated User with id', this.id);
   }
 
   @AfterRemove()
   logRemove() {
-    console.log('Removed user with id', this.id);
+    console.log('Removed User with id', this.id);
   }
 }

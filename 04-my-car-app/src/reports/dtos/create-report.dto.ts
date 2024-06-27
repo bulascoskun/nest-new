@@ -19,21 +19,19 @@ export class CreateReportDto {
   @Max(2050)
   year: number;
 
-  @Min(0)
-  @Max(10000000)
   @IsNumber()
+  @Min(0)
+  @Max(1000000)
   mileage: number;
 
   @IsLongitude()
-  @IsNumber()
   lng: number;
 
   @IsLatitude()
-  @IsNumber()
   lat: number;
 
-  @Min(0)
-  @Max(10000000)
   @IsNumber()
+  @Min(0)
+  @Max(1000000)
   price: number;
 }
